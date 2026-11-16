@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sitio institucional de AMMOTECSA, Asociación de Maestros Mayores de Obras y Técnicos de Salta. Información, servicios y atención al afiliado.">
+  <meta name="theme-color" content="#245c4a">
+  <title>AMMOTECSA | Asociación de Maestros Mayores de Obras y Técnicos de Salta</title>
+  <style>
+    :root {
+      --green: #245c4a;
+      --green-dark: #173f34;
+      --green-soft: #e8f1eb;
+      --cream: #f7f4ed;
+      --paper: #fffefa;
+      --ink: #27332e;
+      --muted: #68756e;
+      --line: #dfe7e0;
+      --gold: #c49a55;
+      --shadow: 0 16px 45px rgba(29, 61, 48, .09);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      background: var(--green-dark);
+      color: rgba(255,255,255,.9);
+      font-size: .83rem;
+    }
+    .topbar-inner {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .topbar a { opacity: .9; }
+    .topbar a:hover { opacity: 1; text-decoration: underline; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,254,250,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(223,231,224,.85);
+    }
+    .nav-wrap {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 240px;
+    }
+    .brand img {
+      display: block;
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--green);
+      color: white;
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .brand-name { display: block; color: var(--green-dark); font-weight: 800; font-size: .98rem; line-height: 1.2; }
+    .brand-sub { display: block; color: var(--muted); font-size: .7rem; line-height: 1.35; margin-top: 4px; max-width: 210px; }
+    nav { display: flex; align-items: center; gap: 21px; }
+    nav a {
+      color: #46564e;
+      font-size: .88rem;
+      font-weight: 650;
+      transition: color .2s ease;
+    }
+    nav a:hover { color: var(--green); }
+    .nav-cta {
+      padding: 11px 17px;
+      border-radius: 999px;
+      color: white !important;
+      background: var(--green);
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--green-dark);
+      border-radius: 12px;
+      padding: 9px 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 86px 0 78px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(196,154,85,.17), transparent 25%),
+        radial-gradient(circle at 5% 90%, rgba(36,92,74,.11), transparent 28%),
+        var(--cream);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 54px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: var(--gold); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 720px;
+      margin: 18px 0 20px;
+      color: var(--green-dark);
+      font-family: Manrope, Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: clamp(2.55rem, 5vw, 4.55rem);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+    }
+    .hero-copy {
+      max-width: 590px;
+      color: #59675f;
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      min-height: 49px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: .91rem;
+      font-weight: 750;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--green); color: white; box-shadow: 0 9px 22px rgba(36,92,74,.17); }
+    .btn-primary:hover { background: var(--green-dark); }
+    .btn-secondary { border-color: #cbd8ce; color: var(--green-dark); background: rgba(255,255,255,.55); }
+    .hero-visual {
+      min-height: 360px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .visual-card {
+      width: min(100%, 440px);
+      min-height: 330px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255,255,255,.94), rgba(232,241,235,.88));
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+    .visual-card .visual-logo {
+      width: 94px; height: 94px; object-fit: contain;
+      border-radius: 22px;
+    }
+    .visual-card h2 {
+      margin: 24px 0 8px;
+      color: var(--green-dark);
+      font-size: 1.6rem;
+      line-height: 1.2;
+      letter-spacing: -.04em;
+    }
+    .visual-card p { color: var(--muted); margin-bottom: 0; }
+    .visual-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: white;
+      color: var(--green);
+      font-size: .75rem;
+      font-weight: 800;
+    }
+    .orbit {
+      position: absolute;
+      width: 390px; height: 390px;
+      border: 1px solid rgba(36,92,74,.14);
+      border-radius: 50%;
+      transform: translate(32px, -12px);
+    }
+    .orbit::after {
+      content: "";
+      position: absolute;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      top: 45px; right: 52px;
+      box-shadow: 0 0 0 8px rgba(196,154,85,.13);
+    }
+
+    .quick-links { margin-top: -28px; position: relative; z-index: 3; }
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .quick-card {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      box-shadow: 0 9px 28px rgba(30,65,48,.06);
+    }
+    .quick-icon {
+      flex: 0 0 45px;
+      width: 45px; height: 45px;
+      display: grid; place-items: center;
+      border-radius: 14px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 1.25rem;
+    }
+    .quick-card strong { display: block; color: var(--green-dark); font-size: .94rem; }
+    .quick-card span:last-child { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+
+    section { scroll-margin-top: 105px; }
+    .section { padding: 92px 0; }
+    .section-soft { background: #f5f8f4; }
+    .section-heading { max-width: 680px; margin-bottom: 35px; }
+    .section-heading h2 {
+      margin: 12px 0 12px;
+      color: var(--green-dark);
+      font-family: Manrope, Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: clamp(2rem, 3.4vw, 2.9rem);
+      line-height: 1.12;
+      letter-spacing: -.045em;
+    }
+    .section-heading p { color: var(--muted); margin-bottom: 0; }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 55px; align-items: start; }
+    .about-panel {
+      min-height: 290px;
+      padding: 32px;
+      border-radius: var(--radius);
+      background: var(--green);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-panel::after {
+      content: "A";
+      position: absolute;
+      right: 15px; bottom: -90px;
+      color: rgba(255,255,255,.08);
+      font-size: 18rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .about-panel h3 { position: relative; z-index: 1; font-size: 1.5rem; margin-bottom: 12px; }
+    .about-panel p { position: relative; z-index: 1; color: rgba(255,255,255,.78); max-width: 340px; }
+    .about-list { display: grid; gap: 18px; }
+    .about-item { padding-bottom: 17px; border-bottom: 1px solid var(--line); }
+    .about-item:last-child { border-bottom: 0; }
+    .about-item h3 { margin-bottom: 5px; color: var(--green-dark); font-size: 1rem; }
+    .about-item p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .info-card {
+      min-height: 210px;
+      padding: 25px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card-icon {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      border-radius: 14px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+    }
+    .info-card h3 { color: var(--green-dark); font-size: 1.08rem; margin-bottom: 8px; }
+    .info-card p { color: var(--muted); font-size: .9rem; margin-bottom: 0; }
+    .placeholder {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 9px;
+      border-radius: 7px;
+      background: #f3f5f1;
+      color: #718078;
+      font-size: .72rem;
+      font-weight: 750;
+      letter-spacing: .02em;
+    }
+
+    .member-band {
+      padding: 38px;
+      border-radius: 24px;
+      background: var(--green-dark);
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 25px;
+    }
+    .member-band h2 { margin-bottom: 8px; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.04em; }
+    .member-band p { max-width: 650px; margin-bottom: 0; color: rgba(255,255,255,.76); }
+    .member-band .btn { background: white; color: var(--green-dark); white-space: nowrap; }
+
+    .news-layout { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
+    .news-feature, .news-side {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: white;
+    }
+    .news-feature { min-height: 250px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(145deg, #e8f1eb, #f8f5ed); }
+    .news-feature h3 { color: var(--green-dark); font-size: 1.55rem; margin: 10px 0; }
+    .news-feature p, .news-side p { color: var(--muted); margin-bottom: 0; }
+    .news-side { display: grid; align-content: center; gap: 18px; }
+    .news-row { padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+    .news-row:last-child { padding-bottom: 0; border: 0; }
+    .news-row strong { display: block; color: var(--green-dark); margin-bottom: 4px; }
+
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 42px; }
+    .contact-card {
+      padding: 30px;
+      border-radius: var(--radius);
+      background: var(--green);
+      color: white;
+    }
+    .contact-card h3 { font-size: 1.45rem; margin-bottom: 10px; }
+    .contact-card p { color: rgba(255,255,255,.8); }
+    .contact-detail { display: flex; gap: 12px; margin-top: 18px; align-items: flex-start; }
+    .contact-detail b { display: block; font-size: .87rem; }
+    .contact-detail span { display: block; color: rgba(255,255,255,.8); font-size: .88rem; overflow-wrap: anywhere; }
+    .contact-links { display: grid; gap: 13px; align-content: center; }
+    .contact-link {
+      display: flex; justify-content: space-between; align-items: center; gap: 15px;
+      padding: 17px 19px; border: 1px solid var(--line); border-radius: 14px; background: white;
+    }
+    .contact-link strong { color: var(--green-dark); }
+    .contact-link span { color: var(--muted); font-size: .84rem; text-align: right; }
+    .contact-link:hover { border-color: #a9c2b0; }
+
+    footer { padding: 32px 0; background: #14382f; color: rgba(255,255,255,.76); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-brand { color: white; font-weight: 800; }
+    footer p { margin: 4px 0 0; font-size: .8rem; }
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; font-size: .82rem; }
+    .footer-links a:hover { color: white; }
+
+    @media (max-width: 980px) {
+      nav { gap: 13px; }
+      nav a { font-size: .8rem; }
+      .brand { min-width: auto; }
+      .hero-grid { gap: 25px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 30px, 560px); }
+      .topbar-inner { justify-content: center; text-align: center; min-height: 34px; }
+      .topbar-inner span:first-child { display: none; }
+      .nav-wrap { min-height: 75px; }
+      .brand img, .brand-mark { width: 49px; height: 49px; }
+      .brand-name { font-size: .88rem; }
+      .brand-sub { font-size: .65rem; }
+      .menu-toggle { display: block; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 75px; left: 0; right: 0;
+        padding: 18px 22px 22px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 15px 25px rgba(20,56,47,.08);
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+      }
+      nav.open { display: flex; }
+      nav a { padding: 12px 4px; font-size: .92rem; }
+      nav .nav-cta { text-align: center; margin-top: 8px; }
+      .hero { padding: 62px 0 58px; }
+      .hero-grid, .about-grid, .contact-grid, .news-layout { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 310px; }
+      .visual-card { min-height: 285px; }
+      .orbit { width: 300px; height: 300px; }
+      .quick-grid { grid-template-columns: 1fr; }
+      .quick-links { margin-top: -16px; }
+      .section { padding: 68px 0; }
+      .about-grid { gap: 25px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .member-band { grid-template-columns: 1fr; padding: 28px; }
+      .member-band .btn { justify-self: start; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Representación, acompañamiento y comunidad.</span>
+      <span>Salta, Argentina · <a href="mailto:ammotecsa-union@hotmail.com">ammotecsa-union@hotmail.com</a></span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="#inicio" aria-label="AMMOTECSA, inicio">
+        <!-- Reemplazar assets/logo-ammotecsa.png por el archivo del logo institucional. -->
+        <img src="assets/logo-ammotecsa.png" alt="Logotipo de AMMOTECSA"
+             onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+        <span class="brand-mark" hidden>AM</span>
+        <span>
+          <span class="brand-name">AMMOTECSA</span>
+          <span class="brand-sub">Asociación de Maestros Mayores de Obras y Técnicos de Salta</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">☰</button>
+      <nav id="mainNav" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#mi-espacio">Mi espacio</a>
+        <a href="#servicios">Servicios y beneficios</a>
+        <a href="#atencion">Atención</a>
+        <a href="#informacion">Información sindical</a>
+        <a href="#comunidad">Comunidad</a>
+        <a class="nav-cta" href="#contacto">Contactanos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">AMMOTECSA · Salta</span>
+          <h1>Una institución cerca de quienes construyen.</h1>
+          <p class="hero-copy">Un espacio de encuentro, información y acompañamiento para Maestros Mayores de Obras y Técnicos de Salta.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#servicios">Conocer servicios <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#atencion">Canales de atención</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Presentación institucional">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="visual-card">
+            <div>
+              <img class="visual-logo" src="assets/logo-ammotecsa.png" alt="Logo institucional de AMMOTECSA"
+                   onerror="this.style.display='none';">
+              <span class="visual-tag">ASOCIACIÓN · SALTA</span>
+              <h2>Un lugar para informarte, participar y estar acompañado.</h2>
+              <p>Información institucional y contenidos para afiliados.</p>
+            </div>
+            <span class="placeholder">Contenido institucional: A completar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container quick-links" aria-label="Accesos rápidos">
+      <div class="quick-grid">
+        <a class="quick-card" href="#mi-espacio">
+          <span class="quick-icon" aria-hidden="true">◎</span>
+          <span><strong>Mi espacio</strong><span>Información para afiliados</span></span>
+        </a>
+        <a class="quick-card" href="#servicios">
+          <span class="quick-icon" aria-hidden="true">✳</span>
+          <span><strong>Servicios y beneficios</strong><span>Prestaciones y convenios</span></span>
+        </a>
+        <a class="quick-card" href="#atencion">
+          <span class="quick-icon" aria-hidden="true">✉</span>
+          <span><strong>Atención al afiliado</strong><span>Canales de contacto</span></span>
+        </a>
+      </div>
+    </div>
+
+    <section class="section" id="nosotros">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <span class="eyebrow" style="color:#e7d1a8">Conocé la asociación</span>
+          <h3>Una institución construida con participación.</h3>
+          <p>Historia, identidad y objetivos de AMMOTECSA.</p>
+          <span class="placeholder">A completar</span>
+        </div>
+        <div>
+          <div class="section-heading">
+            <span class="eyebrow">Quiénes somos</span>
+            <h2>Conocé AMMOTECSA</h2>
+            <p>La información institucional, la trayectoria y las personas que forman parte de la asociación.</p>
+          </div>
+          <div class="about-list">
+            <article class="about-item">
+              <h3>Nuestra historia</h3>
+              <p>A completar.</p>
+            </article>
+            <article class="about-item">
+              <h3>Fundación</h3>
+              <p>A completar.</p>
+            </article>
+            <article class="about-item">
+              <h3>Misión y objetivos</h3>
+              <p>A completar.</p>
+            </article>
+            <article class="about-item">
+              <h3>Autoridades y comisión directiva</h3>
+              <p>A completar.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="mi-espacio">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Para nuestros afiliados</span>
+          <h2>Mi espacio</h2>
+          <p>Un punto de acceso a la información y a las gestiones vinculadas con la afiliación.</p>
+        </div>
+        <div class="cards-grid">
+          <article class="info-card"><span class="card-icon">▣</span><h3>Información de afiliación</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">▤</span><h3>Credencial de afiliación</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">✉</span><h3>Consultas y solicitudes</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+        </div>
+        <p style="margin:20px 0 0;color:var(--muted);font-size:.82rem">La consulta de datos personales o documentación privada requerirá un espacio autenticado y seguro, que no forma parte de esta primera versión pública.</p>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Acompañamiento</span>
+          <h2>Servicios y beneficios</h2>
+          <p>Conocé las prestaciones, beneficios y convenios disponibles para los afiliados.</p>
+        </div>
+        <div class="cards-grid">
+          <article class="info-card"><span class="card-icon">♡</span><h3>Salud y cobertura</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">＋</span><h3>Asistencia y ayudas</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">⌂</span><h3>Turismo y recreación</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">◇</span><h3>Convenios y descuentos</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">▧</span><h3>Asesoramiento</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">＋</span><h3>Otros beneficios</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="atencion">
+      <div class="container">
+        <div class="member-band">
+          <div>
+            <span class="eyebrow" style="color:#e7d1a8">Estamos para escucharte</span>
+            <h2>Atención al afiliado</h2>
+            <p>Canales de consulta, orientación y acompañamiento. Los procedimientos y horarios se incorporarán cuando estén confirmados.</p>
+          </div>
+          <a class="btn" href="#contacto">Ver contacto <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="cards-grid" style="margin-top:22px">
+          <article class="info-card"><span class="card-icon">✉</span><h3>Consultas y reclamos</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">◷</span><h3>Turnos y atención</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">▤</span><h3>Trámites y documentación</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="informacion">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Actualidad institucional</span>
+          <h2>Información sindical</h2>
+          <p>Un espacio para compartir novedades, comunicados y contenidos de interés para el sector.</p>
+        </div>
+        <div class="news-layout">
+          <article class="news-feature">
+            <span class="visual-tag">COMUNICADOS</span>
+            <h3>Novedades de AMMOTECSA</h3>
+            <p>A completar.</p>
+            <span class="placeholder">Próximamente</span>
+          </article>
+          <div class="news-side">
+            <div class="news-row"><strong>Actividad sindical</strong><p>A completar.</p></div>
+            <div class="news-row"><strong>Derechos laborales y normativa</strong><p>A completar.</p></div>
+            <div class="news-row"><strong>Negociaciones y acuerdos</strong><p>A completar.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="comunidad">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Participación</span>
+          <h2>Comunidad</h2>
+          <p>Actividades y espacios para compartir, aprender y fortalecer los vínculos entre afiliados.</p>
+        </div>
+        <div class="cards-grid">
+          <article class="info-card"><span class="card-icon">▣</span><h3>Capacitación y formación</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">♫</span><h3>Cultura y encuentros</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">⚽</span><h3>Deportes y recreación</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">⌂</span><h3>Actividades familiares</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">◎</span><h3>Participación de afiliados</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+          <article class="info-card"><span class="card-icon">▧</span><h3>Galería de actividades</h3><p>A completar.</p><span class="placeholder">A completar</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-heading">
+            <span class="eyebrow">Comunicate con nosotros</span>
+            <h2>Estamos en contacto</h2>
+            <p>Encontrá los canales institucionales de AMMOTECSA.</p>
+          </div>
+          <div class="contact-card">
+            <h3>AMMOTECSA</h3>
+            <p>Asociación de Maestros Mayores de Obras y Técnicos de Salta.</p>
+            <div class="contact-detail"><span aria-hidden="true">⌖</span><div><b>Dirección</b><span>Maipú 1160, Salta, Argentina, 4400</span></div></div>
+            <div class="contact-detail"><span aria-hidden="true">✉</span><div><b>Correo electrónico</b><span>ammotecsa-union@hotmail.com</span></div></div>
+            <div class="contact-detail"><span aria-hidden="true">☎</span><div><b>Teléfono / WhatsApp</b><span>+54 9 387 615-5606</span></div></div>
+          </div>
+        </div>
+        <div class="contact-links">
+          <a class="contact-link" href="https://wa.me/5493876155606" target="_blank" rel="noopener noreferrer"><strong>WhatsApp</strong><span>Enviar un mensaje ↗</span></a>
+          <a class="contact-link" href="mailto:ammotecsa-union@hotmail.com"><strong>Correo electrónico</strong><span>Escribir un correo ↗</span></a>
+          <a class="contact-link" href="https://www.facebook.com/Asoc.deMaestrosMayoresdeObrasyTecnicosdeSalta" target="_blank" rel="noopener noreferrer"><strong>Facebook</strong><span>Visitar página ↗</span></a>
+          <div class="contact-link"><strong>Horarios de atención</strong><span>A completar</span></div>
+          <div class="contact-link"><strong>Ubicación y referencias</strong><span>A completar</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">AMMOTECSA</div>
+        <p>Asociación de Maestros Mayores de Obras y Técnicos de Salta.</p>
+        <p>© <span id="year"></span> · Todos los derechos reservados.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#nosotros">Institución</a>
+        <a href="#servicios">Beneficios</a>
+        <a href="#informacion">Información sindical</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menú');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
